@@ -1,0 +1,87 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title> {% block title %}{% endblock title %} | Alam </title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home_about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home_contact' %}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- page content goes here -->
+    <div class="container">
+        {% block body %}
+        {% endblock body %}
+    </div>
+
+    <!-- Show alert message -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+    <!-- footer  -->
+    <footer class="footer">
+        <div class="copy">&copy; 2022 Developer</div>
+        <div class="bottom-links">
+            <div class="links">
+                <span>More Info</span>
+                <a href="{% url 'home_index' %}">Home</a>
+                <a href="{% url 'home_about' %}">About</a>
+                <a href="{% url 'home_contact' %}">Contact</a>
+            </div>
+            <div class="links">
+                <span>Social Links</span>
+                <a href="https://github.com/Fakhre-Alam-Hub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/fakhre-alam-hub/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/FAKHREA63644657"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
